@@ -1,5 +1,5 @@
 body {
-    margin: 0px;
+    margin: 0rem 2rem;
 }
 
 * {
@@ -55,6 +55,13 @@ a:active {
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+nav {
+    margin-right: 1rem;
+}
+header h1 {
+    margin-left: 2rem;
 }
 ul {
     display: flex;
@@ -63,5 +70,6 @@ ul {
 }
 ul>li {
     width: 30%;
-    font-size: 1.5rem;
+    font-weight: bolder;
+    font-size: 1rem;
 }
