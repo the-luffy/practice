@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- google fonts -->
+    <style>
+        body{
+            background-color: lightseagreen;
+        }
+        h1{
+            font-family: sans-serif;
+            color: azure;
+            text-align: center;
+        }
+        /*visible height = 64px+16px+16px+2px+2px=100px */
+        .one {
+            border: 2px solid blue;
+            height: 64px;
+            width: 64px;
+            background-color: aliceblue;
+            padding: 16px;
+            margin-bottom: 1rem;
+             
+        }
+        /* height width -> given by user = visiblke height width
+        use of box-sizing: border-box;*/
+        .border-box{
+            box-sizing: border-box;
+            border: 2px solid blue;
+            height: 64px;
+            width: 64px;
+            background-color: aliceblue;
+            padding: 16px;
+            margin-bottom: 1rem;
+        }
+
+        .withnothing {
+            height: 64px;
+            width: 64px;
+            background-color: aliceblue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Hello Box Sizing</h1>
+    <div class="one">1</div>
+    <div class="border-box">1</div>
+    <div class="withnothing">1</div>
+</body>
+</html>
