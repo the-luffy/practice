@@ -24,12 +24,36 @@ a:hover {
 a:active {
     color: red;
 }
-.footer-box {
-    text-align: center;
+.footer-parent {
+
     background-color: black;
-    color: white;
     height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.footer_content {
+    color: white;
     font-weight: 500;
     font-size: 1.5rem;
-    text-transform: uppercase;
+
+}
+nav {
+    padding-top: 1rem;
+}
+.parent {
+    display: flex;
+    text-align: center;
+    margin-top: 1rem;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+}
+ul {
+    display: flex;
+}
+li {
+    padding-right: 1rem;
 }
