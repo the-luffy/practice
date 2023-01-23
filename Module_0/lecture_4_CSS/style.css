@@ -39,13 +39,18 @@ a:active {
     font-size: 1.5rem;
 
 }
-nav {
-    padding-top: 1rem;
+.child {
+    width: 30%;
+}
+.main-img {
+    width: 100%;
+    height: auto;
 }
 .parent {
+    margin-top: 2rem;
     display: flex;
     text-align: center;
-    margin-top: 1rem;
+    justify-content: space-evenly;
 }
 header {
     display: flex;
@@ -53,7 +58,10 @@ header {
 }
 ul {
     display: flex;
+    justify-content: space-evenly;
+    width: 20rem;
 }
-li {
-    padding-right: 1rem;
+ul>li {
+    width: 30%;
+    font-size: 1.5rem;
 }
