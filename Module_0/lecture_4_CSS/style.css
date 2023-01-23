@@ -10,13 +10,20 @@ a {
     color: black;
     text-decoration: none; /*to remove underline in anchor*/
 }
-
+li {
+    list-style: none; /* to remove dot in front of li elements */
+}
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
 a:hover {
     color: red;
 }
-
-li {
-    list-style: none; /* to remove dot in front of li elements */
+a:active {
+    color: red;
 }
 .footer-box {
     text-align: center;
