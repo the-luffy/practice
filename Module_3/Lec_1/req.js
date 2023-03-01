@@ -1,4 +1,5 @@
 const request = require('request');
+const fs = require('fs'); 
 let url = "http://www.google.com";
 
 // request working->
@@ -22,6 +23,7 @@ function cb(error, response, body) {
         console.log("Page not found");
     }else {
         console.log('body:',body);// Print the HTML for the Google homepage.
+        fs.writeFileSync("index.html",body);
     }
 }
 console.log('After'); 
