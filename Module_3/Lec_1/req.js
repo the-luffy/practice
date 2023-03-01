@@ -18,8 +18,10 @@ function cb(error, response, body) {
     
     if (error) {
         console.log('error:', error.message); // Print the error message
-    }else if(response){
-        console.log(response.statusCode);
+    }else if(response && response.statusCode == 404){
+        console.log("Page not found");
+    }else {
+        console.log('body:',body);// Print the HTML for the Google homepage.
     }
 }
 console.log('After'); 
