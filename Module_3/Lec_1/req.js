@@ -1,7 +1,7 @@
 const request = require('request');
 const fs = require('fs'); 
 const jsdom = require('jsdom');
-let url = "https://www.espncricinfo.com/series/indian-premier-league-2022-1298423/kolkata-knight-riders-vs-lucknow-super-giants-66th-match-1304112/full-scorecard";
+let url = "https://www.google.com";
 
 // request working->
 //1. request to the given url;
