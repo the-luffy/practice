@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "jsdom": "^21.1.0",
-    "request": "^2.88.2"
-  }
-}
