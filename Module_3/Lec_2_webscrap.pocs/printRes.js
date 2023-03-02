@@ -12,7 +12,7 @@ function cb(error, response, body) {
         console.log("Page not found");
     }else {
         console.log("content recieved");
-        console.log(body);
+        // console.log(body);
         extractData(body);
     }
 }
@@ -22,5 +22,9 @@ function extractData(html) {
     // pass to newJSDOM
     let dom = new JSDOM(html);
     // document represent the whole html page
-    let document = dom.window.document; 
+    let document = dom.window.document;
+    // using document and your selectors you find element in html page p span
+     let firstButton = document.querySelectorAll("p span");
+     let content = firstButton[8].textContent;
+     console.log(content);
 }
