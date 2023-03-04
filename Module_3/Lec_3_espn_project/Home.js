@@ -1,7 +1,7 @@
 const request = require('request');
 const fs = require('fs');
 const jsdom = require('jsdom');
-let url = "https://www.espncricinfo.com/series/indian-premier-league-2022-1298423/match-schedule-fixtures-and-results";
+let url = "https://www.espncricinfo.com/series/indian-premier-league-2022-1298423";
 
 request(url, cb);
 console.log('Before');
@@ -23,16 +23,10 @@ function extractData(html) {
     let dom = new JSDOM(html);
     // document represent the whole html page
     let document = dom.window.document;
-    let AllMatch = document.querySelectorAll(".ds-grow.ds-px-4.ds-border-r.ds-border-line-default-translucent .ds-no-tap-higlight");
-    console.log(AllMatch.length);
-    for (let i = 0,j = 1; j <=74 ,i < AllMatch.length; i=i+6,j++) {
-        let link = AllMatch[i].getAttribute("href");
-        let fullLink = "https://www.espncricinfo.com" + link;
-        console.log(j + " " + fullLink);
-        // console.log(" ");
-        request(fullLink,bcb);
-        
-    }
+    let matchLink = document.querySelectorAll(".ds-flex.ds-text-title-xs.ds-items-center a");
+    let href =matchLink[1].getAttribute("href");
+
+    let link = "https://www.espncricinfo.com" + href;
+    console.log(link);
+
 }
-
-
