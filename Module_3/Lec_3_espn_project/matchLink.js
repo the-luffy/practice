@@ -1,10 +1,11 @@
 const request = require('request');
 const fs = require('fs');
 const jsdom = require('jsdom');
-let url = "https://www.espncricinfo.com/series/indian-premier-league-2022-1298423/match-schedule-fixtures-and-results";
 
-request(url, cb);
-console.log('Before');
+function allMatchPageExecutor() {
+    request(url, cb);
+}
+
 function cb(error, response, body) {
     if (error) {
         console.log('error:', error.message);
@@ -28,11 +29,15 @@ function extractData(html) {
     for (let i = 0,j = 1; j <=74 ,i < AllMatch.length; i=i+6,j++) {
         let link = AllMatch[i].getAttribute("href");
         let fullLink = "https://www.espncricinfo.com" + link;
-        console.log(j + " " + fullLink);
         // console.log(" ");
+        
         
     }
 
+}
+
+module.exports = {
+    AllMatchFn: allMatchPageExecutor
 }
 
 // .ds-p-4.hover:ds-bg-ui-fill-translucent.ds-border-t.ds-border-line
