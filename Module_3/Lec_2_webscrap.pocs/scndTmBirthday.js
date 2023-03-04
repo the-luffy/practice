@@ -25,7 +25,6 @@ function extractData(body) {
     let document = dom.window.document;
     // using document and your selectors you find element in html page p span
     let firstButton = document.querySelectorAll(".ds-w-full.ds-table.ds-table-md.ds-table-auto");
-    console.log(firstButton.length);
     let firstInningBowling = firstButton[1]; // bowling table 2
     let secondInningBowling = firstButton[3]; // bowling table 4
     // element -> ke ander jo bhi html wo inner html se aa jayegi
@@ -43,20 +42,40 @@ function getDataFromBowlingTable(newHtmlString) {
     // document represent the whole html page
     let document = dom.window.document;
 
-    let allRows = document.querySelectorAll("tbody tr td.ds-flex.ds-items-center");
-    console.log(allRows.length);
-    let Hw = 0;
-    let HwName = "";
+    let allRows = document.querySelectorAll("tbody tr td.ds-flex.ds-items-center a");
+
     for (let i = 0; i < allRows.length; i++) {
-        let content = allRows[i].textContent;
-        let allRows2 = document.querySelectorAll(".ds-w-0.ds-whitespace-nowrap.ds-text-right strong");
-        let content2 = allRows2[i].textContent;
-        if(Hw < content2) {
-            Hw = content2;
-            HwName = content;
-        }
-        console.log(content + " " + content2);
+        let link = allRows[i].getAttribute("href");
+        let fullLink = "https://www.espncricinfo.com" + link;
+        
+        // console.log(fullLink);
+        request(fullLink,bcb);
         
     }
-    console.log("Highest wicket tracker is " + HwName + " and wicket is " + Hw);
+}
+
+function bcb(error, response, body) {
+    if (error) {
+        console.log('error:', error.message);
+    } else if (response && response.statusCode == 404) {
+        console.log("Page not found");
+    } else {
+        // console.log("content recieved");
+        // console.log(body);
+        extractBirthdays(body);
+    }
+}
+
+function extractBirthdays(body) {
+    const JSDOM = jsdom.JSDOM;
+    // pass to newJSDOM
+    let dom = new JSDOM(body);
+    // document represent the whole html page
+    let document = dom.window.document;
+    let dob = document.querySelectorAll("span h5");
+    let PlayerName = dob[0].textContent;
+    let born = dob[1].textContent;
+    console.log(PlayerName);
+    console.log(born);
+    console.log(" ");
 }
