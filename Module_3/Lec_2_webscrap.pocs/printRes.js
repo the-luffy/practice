@@ -24,7 +24,9 @@ function extractData(html) {
     // document represent the whole html page
     let document = dom.window.document;
     // using document and your selectors you find element in html page p span
-    let firstButton = document.querySelectorAll("p span");
-    let content = firstButton[8].textContent;
-    console.log(content);
+    let firstButton = document.querySelectorAll(".ds-w-full.ds-table.ds-table-xs.ds-table-auto");
+    // let content = firstButton[8].textContent;
+    console.log(firstButton.length);
+    // let AllTables = document.querySelectorAll(".ds-w-full.ds-table.ds-table-xs.ds-table-auto ");
+    // console.log(AllTables.length);
 }
