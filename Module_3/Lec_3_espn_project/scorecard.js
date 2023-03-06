@@ -37,9 +37,9 @@ function extractData(html) {
 
     //
     let TeamStatsElem = document.querySelectorAll(".ds-w-full.ds-table.ds-table-md.ds-table-auto.ci-scorecard-table");
-    let HtmlString = "" + "<table>" + TeamStatsElem[0].innerHTML + "<table/>";
+    // let HtmlString = "" + "<table>" + TeamStatsElem[0].innerHTML + "<table/>";
     // + "<table>" + TeamStatsElem[1].innerHTML + "</table>";
-    fs.writeFileSync("firstTeam.html", HtmlString);
+    // fs.writeFileSync("firstTeam.html", HtmlString);
     // console.log("file created");
 
     let firstBattingTeam = TeamStatsElem[0];
