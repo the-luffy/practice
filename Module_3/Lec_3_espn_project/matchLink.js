@@ -1,8 +1,8 @@
 const request = require('request');
 const fs = require('fs');
 const jsdom = require('jsdom');
-
-function allMatchPageExecutor() {
+const scorecardPageObj = require("./scorecard")
+function allMatchPageExecutor(url) {
     request(url, cb);
 }
 
@@ -25,11 +25,10 @@ function extractData(html) {
     // document represent the whole html page
     let document = dom.window.document;
     let AllMatch = document.querySelectorAll(".ds-grow.ds-px-4.ds-border-r.ds-border-line-default-translucent .ds-no-tap-higlight");
-    console.log(AllMatch.length);
     for (let i = 0,j = 1; j <=74 ,i < AllMatch.length; i=i+6,j++) {
         let link = AllMatch[i].getAttribute("href");
-        let fullLink = "https://www.espncricinfo.com" + link;
-        // console.log(" ");
+        let scorecardLink = "https://www.espncricinfo.com" + link;
+        scorecardPageObj.scorecardFn(scorecardLink);
         
         
     }
