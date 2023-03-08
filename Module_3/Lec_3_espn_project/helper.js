@@ -1,33 +1,31 @@
 const fs = require("fs");
-const path = require("path");
+const path = require('path');
 function dirCreater(inputPath) {
     let isPresent = fs.existsSync(inputPath);
     if (isPresent == false) {
         fs.mkdirSync(inputPath);
     }
     else {
-        console.log(inputPath, " already present ");
+        console.log(inputPath," already present ");
     }
 }
 
-function fileHandler(inputPath, dataObj) {
+function fileHandler(inputPath) {
     let isFilePresent = fs.existsSync(inputPath);
 
     if (isFilePresent == false) {
-        fileCreater(inputPath, dataObj);
+        fileCreater(inputPath);
     } else {
-        fileUpdater(inputPath. dataObj);
+        fileUpdater(inputPath);
     }
 }
-//JSON.stringify -> write
-//JSON.parse -> reading
 
-function fileCreater(playerPath, dataObj) {
+function fileCreater(playerPath) {
     fs.writeFileSync(playerPath, "");
 
 }
 
-function fileUpdater(playerPath, dataObj) {
+function fileUpdater(playerPath) {
     console.log("entry updated", path.basename(playerPath));
 }
 

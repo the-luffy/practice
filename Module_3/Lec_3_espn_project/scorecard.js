@@ -69,29 +69,24 @@ function processTeam(Teamstats,TeamName,vanue,against) {
             // console.log(name + " team " + TeamName + " against " + against);
             // console.log("vanue " + vanue);
             // console.log("name-> " + name + " Run-> " + Run + " Balls-> " + Balls + " fours-> " + fours + " sixs-> " + sixs + " sr-> " + sr);
-            let dataObj = {
-                name, Run, Balls, fours, sixs, sr, against, result, vanue
-            }
-            dataOrganizer(TeamName, name, dataObj);
+            dataOrganizer(TeamName,name);
         }
     }
     console.log(" ");
 
 }
 
-function dataOrganizer(TeamName, PlayerName, dataObj) {
+function dataOrganizer(TeamName,PlayerName) {
 
     // folder will not be present
     // folder will be present
     const teamPath = path.join(__dirname,"ipl", TeamName);
     helperObj.dirCreater(teamPath);
     // file will be not present
-    const playerPath = path.join(teamPath, PlayerName + ".json");
-    helperObj.fileHandler(playerPath, dataObj);
+    const playerPath = path.join(teamPath,PlayerName + ".json");
+    helperObj.fileHandler(playerPath);
 
 }
-
-
 
 module.exports= {
     scorecardFn: scorecardPageExecutor
