@@ -6,7 +6,7 @@ function dirCreater(inputPath) {
         fs.mkdirSync(inputPath);
     }
     else {
-        console.log(inputPath," already present ");
+        console.log(inputPath, " already present ");
     }
 }
 
@@ -19,6 +19,8 @@ function fileHandler(inputPath, dataObj) {
         fileUpdater(inputPath. dataObj);
     }
 }
+//JSON.stringify -> write
+//JSON.parse -> reading
 
 function fileCreater(playerPath, dataObj) {
     fs.writeFileSync(playerPath, "");
@@ -26,7 +28,7 @@ function fileCreater(playerPath, dataObj) {
 }
 
 function fileUpdater(playerPath, dataObj) {
-    console.log("entry updated",path.basename(playerPath));
+    console.log("entry updated", path.basename(playerPath));
 }
 
 module.exports = {
