@@ -1,10 +1,12 @@
 const request = require('request');
 const fs = require('fs');
 const jsdom = require('jsdom');
+const path = require("path");
+const helperObj = require('./helper');
+
 function scorecardPageExecutor(url) {
     request(url, cb);
 }
-// let url = "https://www.espncricinfo.com/series/indian-premier-league-2022-1298423/gujarat-titans-vs-rajasthan-royals-final-1312200/full-scorecard";
 
 function cb(error, response, body) {
     if (error) {
@@ -57,23 +59,40 @@ function processTeam(Teamstats,TeamName,vanue,against) {
     for (let i = 0; i < TotalRow.length; i++) {
         let cols = TotalRow[i].querySelectorAll("td");
         if (cols.length == 8) {
-            let name = cols[0].textContent;
+            let name = cols[0].textContent.trim();
             let Run = cols[2].textContent;
             let Balls = cols[3].textContent;
             let fours = cols[5].textContent;
             let sixs = cols[6].textContent;
             let sr = cols[7].textContent;
-            console.log("");
-            console.log(name + " team " + TeamName + " against " + against);
-            console.log("vanue " + vanue);
-            console.log("name-> " + name + " Run-> " + Run + " Balls-> " + Balls + " fours-> " + fours + " sixs-> " + sixs + " sr-> " + sr);
+            // console.log("");
+            // console.log(name + " team " + TeamName + " against " + against);
+            // console.log("vanue " + vanue);
+            // console.log("name-> " + name + " Run-> " + Run + " Balls-> " + Balls + " fours-> " + fours + " sixs-> " + sixs + " sr-> " + sr);
+            let dataObj = {
+                name, Run, Balls, fours, sixs, sr, against, result, vanue
+            }
+            dataOrganizer(TeamName, name, dataObj);
         }
     }
     console.log(" ");
+
 }
+
+function dataOrganizer(TeamName, PlayerName, dataObj) {
+
+    // folder will not be present
+    // folder will be present
+    const teamPath = path.join(__dirname,"ipl", TeamName);
+    helperObj.dirCreater(teamPath);
+    // file will be not present
+    const playerPath = path.join(teamPath, PlayerName + ".json");
+    helperObj.fileHandler(playerPath, dataObj);
+
+}
+
+
 
 module.exports= {
     scorecardFn: scorecardPageExecutor
 }
-
-//" team " + team + " against " + oppTeam +
