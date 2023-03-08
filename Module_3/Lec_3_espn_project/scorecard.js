@@ -47,14 +47,14 @@ function extractData(html) {
     let firstBattingTeam = TeamStatsElem[0];
     let secondBattingTeam = TeamStatsElem[1];
     console.log(firstTeam + " Player Stats");
-    processTeam(firstBattingTeam,firstTeam,vanue,secondTeam);
+    processTeam(firstBattingTeam,firstTeam,vanue,secondTeam,res);
     console.log(secondTeam + " Player Stats");
-    processTeam(secondBattingTeam,secondTeam,vanue,firstTeam);
+    processTeam(secondBattingTeam,secondTeam,vanue,firstTeam,res);
 
 
 }
 
-function processTeam(Teamstats,TeamName,vanue,against) {
+function processTeam(Teamstats,TeamName,vanue,against,result) {
     let TotalRow = Teamstats.querySelectorAll("tbody tr");
     for (let i = 0; i < TotalRow.length; i++) {
         let cols = TotalRow[i].querySelectorAll("td");
@@ -69,14 +69,17 @@ function processTeam(Teamstats,TeamName,vanue,against) {
             // console.log(name + " team " + TeamName + " against " + against);
             // console.log("vanue " + vanue);
             // console.log("name-> " + name + " Run-> " + Run + " Balls-> " + Balls + " fours-> " + fours + " sixs-> " + sixs + " sr-> " + sr);
-            dataOrganizer(TeamName,name);
+            let dataObj = {
+                name, Run, Balls, fours, sixs, sr, against, result, vanue
+            }
+            dataOrganizer(TeamName,name,dataObj);
         }
     }
     console.log(" ");
 
 }
 
-function dataOrganizer(TeamName,PlayerName) {
+function dataOrganizer(TeamName,PlayerName,dataObj) {
 
     // folder will not be present
     // folder will be present
@@ -84,7 +87,7 @@ function dataOrganizer(TeamName,PlayerName) {
     helperObj.dirCreater(teamPath);
     // file will be not present
     const playerPath = path.join(teamPath,PlayerName + ".json");
-    helperObj.fileHandler(playerPath);
+    helperObj.fileHandler(playerPath, dataObj);
 
 }
 
