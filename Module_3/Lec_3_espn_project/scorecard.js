@@ -86,7 +86,7 @@ function dataOrganizer(TeamName,PlayerName,dataObj) {
     const teamPath = path.join(__dirname,"ipl", TeamName);
     helperObj.dirCreater(teamPath);
     // file will be not present
-    const playerPath = path.join(teamPath,PlayerName + ".json");
+    const playerPath = path.join(teamPath,PlayerName + ".xlsx");
     helperObj.fileHandler(playerPath, dataObj);
 
 }

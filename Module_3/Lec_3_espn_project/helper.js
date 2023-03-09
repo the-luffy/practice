@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require('path');
+const xlsx  = require('xlsx');
 function dirCreater(inputPath) {
     let isPresent = fs.existsSync(inputPath);
     if (isPresent == false) {
@@ -12,11 +13,14 @@ function dirCreater(inputPath) {
 
 function fileHandler(inputPath,dataObj) {
     let isFilePresent = fs.existsSync(inputPath);
-
+    let arr = [];
     if (isFilePresent == false) {
-        fileCreater(inputPath), dataObj;
+        arr.push(dataObj);
+        excelWriter(inputPath, arr);
     } else {
-        fileUpdater(inputPath, dataObj);
+        arr = excelReader(inputPath);
+        arr.push(dataObj);
+        excelWriter(inputPath, arr);
     }
 }
 
@@ -31,6 +35,27 @@ function fileUpdater(playerPath,dataObj) {
     let arr = JSON.parse(dataBuffer);
     arr.push(dataObj);
     fs.writeFileSync(playerPath, JSON.stringify(arr));
+}
+
+function excelReader(filePath) {
+    //file -> read -> workbook
+    let wb = xlsx.readFile(filePath);
+    // get a worksheet from a workbook
+    let excelData = wb.Sheets["sheet1"];
+    // sheet -> json
+    let ans = xlsx.utils.sheet_to_json(excelData);
+    return ans;
+}
+
+function excelWriter(filePath, json) {
+    // empty workbook
+    let newWB = xlsx.utils.book_new();
+    // worksheet
+    let newWS = xlsx.utils.json_to_sheet(json);
+    //wb -> put worksheet -> worksheet name -> sheet1
+    xlsx.utils.book_append_sheet(newWB, newWS, "sheet1");
+    // worksheet create
+    xlsx.writeFile(newWB, filePath);
 }
 
 module.exports = {
