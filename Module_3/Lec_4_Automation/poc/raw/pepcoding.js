@@ -25,8 +25,24 @@ async function fn() {
     // page change error prevent -> to wait for selector tha tis present on the second page
     await tab.waitForSelector(".LC20lb.MBeuO.DKV0Md", {visible: true});
     // click
-    await tab.click(".LC20lb.MBeuO.DKV0Md",{delay: 200});
+    await tab.click(".LC20lb.MBeuO.DKV0Md",{ delay: 200});
+    await tab.waitForSelector(".site-nav-li", {visible: true});
+    await tab.click(".site-nav-li");
+    await tab.waitForSelector(".row.fade.active .card", {visible: true });
+
+    let courseNames = await tab.evaluate(fun);
+    function fun() {
+        let elemArr = document.querySelectorAll(".card h3");
+        let courseNames = [];
+        for (let i = 0; i < elemArr.length; i++){
+            courseNames[i] = elemArr[i].textContent.trim();
+        }
+        return courseNames;
+        
+    }
+    console.log(courseNames);
 }
+
 
 fn();
 // .LC20lb.MBeuO.DKV0Md

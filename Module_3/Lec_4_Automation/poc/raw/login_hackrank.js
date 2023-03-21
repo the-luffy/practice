@@ -1,7 +1,10 @@
 const puppeteer = require("puppeteer");
 // nearly every fuction of puppeteer return a promise
 // flaviocopes.com/puppeteer/
-// pptr.dev  
+// pptr.dev
+const credObj = require("./cred");
+
+
 
 async function fn() {
     let browserRepresentativeObj = await puppeteer.launch({
@@ -17,11 +20,11 @@ async function fn() {
     // to go google home page
     await tab.goto("https://www.hackerrank.com/auth/login");
     // type email id
-    await tab.type("input[type='text']","pahod48470@asoflex.com", {delay : 200});
+    await tab.type("input[type='text']",credObj.email, {delay: 10});
     //type password
-    await tab.type("input[type='password']","asdfghjkl", {delay : 200});
+    await tab.type("input[type='password']",credObj.password, {delay: 10});
     // click login button
-    await tab.click(".ui-btn.ui-btn-large.ui-btn-primary.auth-button.ui-btn-styled",{delay: 200});
+    await tab.keyboard.press("Enter");
 }
 
 fn();
